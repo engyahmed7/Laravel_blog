@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PostController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,5 +26,10 @@ Route::get('/posts/{id}',[PostController::class, 'show'])->name('posts.show')->w
 Route::get('/posts/{id}/edit', [PostController::class, 'edit'])->name('posts.edit')->where('id', '[0-9]+');
 Route::put('/posts/{id}', [PostController::class, 'update'])->name('posts.update')->where('id', '[0-9]+');
 Route::delete('/posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy')->where('id', '[0-9]+');
+Route::get('/posts/trash' , [PostController::class, 'getTrashed'])->name('posts.trash')->where('id', '[0-9]+');
 
 Route::fallback(fn()=>'Route not found.');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

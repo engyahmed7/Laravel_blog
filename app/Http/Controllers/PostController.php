@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -11,7 +12,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('posts.index');
+        // $posts = Post::all();
+        $posts = Post::paginate(3);
+        return view('posts.index')->with(['posts'=>$posts]);
     }
 
     /**
@@ -35,7 +38,8 @@ class PostController extends Controller
      */
     public function show(string $id)
     {
-        return view('posts.show',['id'=>$id]);
+        $post=Post::find($id);
+        return view('posts.show')->with(['post'=>$post]);
     }
 
     /**
@@ -43,7 +47,8 @@ class PostController extends Controller
      */
     public function edit(string $id)
     {
-        return view('posts.edit')->with(['id'=>$id]);
+        $post=Post::find($id);
+        return view('posts.edit')->with(['post' => $post]);
     }
 
     /**
@@ -59,6 +64,12 @@ class PostController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Post::where('id',$id)->delete();
+        return redirect('/posts');
+    }
+
+    public function getTrashed(){
+        $TrashedPosts= Post::onlyTrashed()->get();
+        return view('posts.trash',['posts'=>$TrashedPosts]);
     }
 }

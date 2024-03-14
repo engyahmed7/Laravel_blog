@@ -13,11 +13,11 @@
           <a class="nav-link active" aria-current="page" href="#">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('posts.trash') }}">trashed posts</a>
+          <a class="nav-link" href="#">Link</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Posts
+            Dropdown
           </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="#">Action</a></li>
@@ -25,6 +25,9 @@
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
         </li>
       </ul>
       <form class="d-flex" role="search">
@@ -36,7 +39,7 @@
 </nav>
 
 <div class="container">
-
+    <p class="display-4">Deleted Posts</p>
 <div
     class="table-responsive"
   >
@@ -49,7 +52,7 @@
                 <th scope="col">Body</th>
                 <th scope="col">Enable</th>
                 <th scope="col">Published At</th>
-                <th scope="col">Actions</th>
+                <th scope="col">Deleted At</th>
             </tr>
             </thead>
             <tbody>
@@ -60,21 +63,13 @@
                 <td scope="col">{{ $post->body }}</td>
                 <td scope="col">{{ $post->enable }}</td>
                 <td scope="col">{{ $post->published_at }}</td>
-                <td>
-                    <a href="{{ route('posts.show', $post->id) }}" class="btn btn-primary">Show</a>
-                    <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-secondary">Edit</a>
-                    <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                    </form>
-                </td>
+                <td scope="col">{{ $post->deleted_at }}</td>
             </tr>
             @endforeach
         </tbody>
     </table>
+  </div>
 
-    {{ $posts->links() }}
-  </div>
-  </div>
+</div>
 </body>
+
