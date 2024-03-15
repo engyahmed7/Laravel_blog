@@ -24,7 +24,7 @@ class storePostRequest extends FormRequest
         return [
             "title" => ['required', 'string',"min:5"],
             "body" => ['required', 'string'],
-            // "enable" => ['required', 'boolean'],
+            "enable" => ['required'],
             "published_at" => ['required', 'date'],
             "user_id"=>['']
 
@@ -35,6 +35,7 @@ class storePostRequest extends FormRequest
     {
         return [
             'published_at.required' => 'Date field is required.',
+            'published_at.date' => 'Date field must be a date.'
         ];
     }
 }

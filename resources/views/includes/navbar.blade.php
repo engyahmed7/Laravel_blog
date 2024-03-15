@@ -17,7 +17,7 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="{{route('posts.index')}}">Home</a>
+              <a class="nav-link {{ Request::routeIs('posts.index') ? ' active' : '' }}" aria-current="page" href="{{route('posts.index')}}">Home</a>
             </li>
 
             <li class="nav-item dropdown">
@@ -35,9 +35,14 @@
               Posts
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item active" href="{{route('posts.index')}}">List</a></li>
-                <li><a class="dropdown-item" href="{{route('posts.create')}}">New Posts</a></li>
-              </ul>
+                <li>
+                    <a class="dropdown-item{{ Request::routeIs('posts.index') ? ' active' : '' }}" href="{{ route('posts.index') }}">List</a>
+                </li>
+                <li>
+                    <a class="dropdown-item{{ Request::routeIs('posts.create') ? ' active' : '' }}" href="{{ route('posts.create') }}">New Posts</a>
+                </li>
+            </ul>
+
             </li>
           </ul>
         </div>

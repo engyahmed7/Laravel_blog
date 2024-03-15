@@ -35,13 +35,16 @@
         @enderror
       </div>
 
-      {{-- <div class="mb-3">
-        <label  class="form-label">enable</label>
-        <input type="text" class="form-control" name="enable" value="{{old('enable')}}" style="width:600px;" >
+      <div class="mb-3">
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="enableCheckbox" name="enable" value="1" {{ old('enable') ? 'checked' : '' }}>
+            <label class="form-check-label" for="enableCheckbox">Enable</label>
+        </div>
         @error("enable")
         <p class="text-danger">{{ $message }}</p>
         @enderror
-      </div> --}}
+    </div>
+
 
       <div class="mb-3">
           <label  class="form-label">date</label>
