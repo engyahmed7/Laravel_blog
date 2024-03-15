@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('body');
-            $table->boolean('enable');
+            $table->boolean('enable')->default(false);
             $table->dateTime('published_at');
             $table->softDeletes();
             $table->timestamps();

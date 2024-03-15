@@ -21,6 +21,7 @@ class PostFactory extends Factory
             'body' => fake()->paragraph,
             'enable' => fake()->boolean,
             'published_at' => fake()->dateTime,
+            'user_id'=>'3'
         ];
     }
 }
