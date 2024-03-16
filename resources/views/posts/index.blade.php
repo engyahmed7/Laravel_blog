@@ -4,6 +4,13 @@
 @section("navbar")
 
 @section("content")
+
+@if (session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
+
 <div class="table-responsive">
     <table
         class="table table-light">

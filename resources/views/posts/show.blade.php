@@ -3,6 +3,11 @@
 @section("navbar")
 
 @section("content")
+@if(session('success'))
+<div class="alert alert-success">
+    {{ session('success') }}
+</div>
+@endif
         <div class="row">
             <div class="col-4 d-block m-auto">
                 <div class="card ">

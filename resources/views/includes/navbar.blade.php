@@ -25,7 +25,7 @@
                 Users
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item active" href="">List</a></li>
+                <li><a class="dropdown-item active" href="{{route('users.index')}}">List</a></li>
                 <li><a class="dropdown-item" href="">New User</a></li>
 
               </ul>

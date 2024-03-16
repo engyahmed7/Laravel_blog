@@ -6,6 +6,7 @@ use App\Http\Requests\storePostRequest;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -35,9 +36,15 @@ class PostController extends Controller
      */
     public function store(storePostRequest $request)
     {
-        Post::create($request->validated());
-        return redirect()->route('posts.index');
+        // Post::create($request->validated());
+        // return redirect()->route('posts.index');
         // dd('created');
+
+        $input = $request->validated();
+        $input['user_id'] = Auth::id();
+        // dd($input);
+        Post::create($input);
+        return redirect()->route('posts.index');
     }
 
     /**
@@ -55,7 +62,10 @@ class PostController extends Controller
     public function edit(string $id)
     {
         $post=Post::find($id);
-        return view('posts.edit')->with(['post' => $post]);
+        if($post->user_id != Auth::id()){
+            return redirect()->route('posts.index')->with('error', 'You are not authorized to edit this post');
+        }
+        return view('posts.edit')->with(['post'=> $post]);
     }
 
     /**
@@ -65,7 +75,7 @@ class PostController extends Controller
     {
 
         Post::where('id', $id)->update($request->only(['title', 'body']));
-        return redirect()->route('posts.show', ['id' => $id]);
+        return redirect()->route('posts.show', ['id' => $id])->with(['success'=>"Your Data Updated Successfully"]);
     }
 
     /**

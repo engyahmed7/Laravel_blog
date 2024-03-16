@@ -54,16 +54,6 @@
           @enderror
         </div>
 
-        <div class="mb-3">
-            <label  class="form-label"> User </label>
-            <select class="form-select form-select" name="user_id" style="width:600px;">
-                @foreach($users as $user){
-                    <option value="{{$user->id}}"> {{$user->name}} </option>
-                }
-                @endforeach
-            </select>
-        </div>
-
       <button type="submit" class="btn btn-primary">Submit</button>
 </div>
 
