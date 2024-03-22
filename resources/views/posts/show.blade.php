@@ -1,29 +1,41 @@
 @extends('layouts.main')
-@section("title","Show Post")
-{{-- @section("navbar") --}}
+
+@section("title", "Show Post")
 
 @section("content")
-@if(session('success'))
-<div class="alert alert-success">
-    {{ session('success') }}
-</div>
-@endif
-        <div class="row">
-            <div class="col-4 d-block m-auto">
-                <div class="card ">
-                        <div class="card-header fw-bold text-dark">
-                        ID: {{ $post->id }}
-                        </div>
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Title: {{ $post->title }}</h5>
-                            <p class="card-text">Body: {{ $post->body }}</p>
-                            <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                    </form>
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-primary text-light">
+                    <h2 class="fw-bold mb-0">Post Details</h2>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <p class="fw-bold">ID:</p>
+                        <p>{{ $post->id }}</p>
                     </div>
+                    <div class="mb-3">
+                        <p class="fw-bold">Title:</p>
+                        <p>{{ $post->title }}</p>
+                    </div>
+                    <div class="mb-3">
+                        <p class="fw-bold">Body:</p>
+                        <p>{{ $post->body }}</p>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-outline-danger">Delete</button>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
 @endsection

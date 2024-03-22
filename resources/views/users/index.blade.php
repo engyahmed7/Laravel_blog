@@ -1,30 +1,21 @@
 @extends('layouts.main')
-@section("title","users list")
+
+@section("title", "Users List")
 
 @section('content')
-<table class="table">
-    <thead>
-      <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Name</th>
-        <th scope="col">Email</th>
-        <th scope="col">Posts Count</th>
-      </tr>
-    </thead>
-    <tbody>
+    <h2 class="mb-4">Users List</h2>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mb-4">
         @foreach($users as $user)
-      <tr>
-        <th scope="row">{{$user['id']}}</th>
-
-        <td>{{$user['name']}}</td>
-        <td>{{$user['email']}}</td>
-        <td>{{$user['posts_count']}}</td>
-      </tr>
-     @endforeach
-      </tr>
-    </tbody>
-
-  </table>
-  {{ $users->links() }}
-
+        <div class="col">
+            <div class="card h-100 shadow border-0">
+                <div class="card-body">
+                    <h5 class="card-title">{{ $user['name'] }}</h5>
+                    <p class="card-text">{{ $user['email'] }}</p>
+                    <p class="card-text text-primary">Posts Count: {{ $user['posts_count'] }}</p>
+                </div>
+            </div>
+        </div>
+        @endforeach
+    </div>
+        {{ $users->links() }}
 @endsection

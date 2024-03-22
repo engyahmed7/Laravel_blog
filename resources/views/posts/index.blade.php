@@ -1,7 +1,6 @@
 @extends('layouts.main')
 
-@section("title","posts")
-{{-- @section("navbar") --}}
+@section("title", "Posts")
 
 @section("content")
 
@@ -11,45 +10,39 @@
     </div>
 @endif
 
-<div class="table-responsive">
-    <table
-        class="table table-light">
-        <thead>
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Title</th>
-                <th scope="col">Body</th>
-                <th scope="col">Enable</th>
-                <th scope="col">Date</th>
-                <th scope="col">User</th>
-                <th scope="col">Actions</th>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach ($posts as $post)
-            <tr>
-                <td scope="col">{{ $post->id }}</td>
-                <td scope="col">{{ $post->title }}</td>
-                <td scope="col">{{ $post->body }}</td>
-                <td scope="col">{{ $post->enable }}</td>
-                <td scope="col">{{ $post->published_at }}</td>
-                <td scope="col">{{ $post->user->name }}</td>
-                <td scope="col">
-                    <div class="d-flex">
-                        <a href="{{ route('posts.show', $post->id) }}" class="btn btn-primary mb-3">Show</a>
-                        <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-secondary mb-3 ms-2">Edit</a>
-                        <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger ms-2">Delete</button>
-                        </form>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mb-4">
+        @foreach ($posts as $post)
+            <div class="col">
+                <div class="card h-100 shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="card-title">{{ $post->title }}</h5>
                     </div>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
+                    <div class="card-body">
+                        <p class="card-text">{{ $post->body }}</p>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><strong>ID:</strong> {{ $post->id }}</li>
+                            <li class="list-group-item"><strong>Enable:</strong> {{ $post->enable ? 'Yes' : 'No' }}</li>
+                            <li class="list-group-item"><strong>Date:</strong> {{ $post->published_at }}</li>
+                            <li class="list-group-item"><strong>User:</strong> {{ $post->user->name }}</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer bg-light">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <a href="{{ route('posts.show', $post->id) }}" class="btn btn-sm btn-outline-primary">Show</a>
+                                <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-sm btn-outline-secondary">Edit</a>
+                            </div>
+                            <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    </div>
+        {{ $posts->links() }}
 
-    {{ $posts->links() }}
-  </div>
 @endsection

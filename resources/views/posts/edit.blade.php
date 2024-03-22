@@ -1,21 +1,30 @@
 @extends('layouts.main')
-@section("title","edit post")
-{{-- @section("navbar") --}}
+
+@section("title", "Edit Post")
 
 @section("content")
-<form method="POST" action="{{ route('posts.update',$post->id) }}" >
-    @method('PUT')
-    @csrf
-    <div class="mb-3">
-        <label for="name" class="form-label">title</label>
-        <input name="title" class="form-control" value="{{ $post->title }}" style="width:500px;"> </input>
-      </div>
-    <div class="mb-3">
-      <label class="form-label" >body</label>
-      <input name="body" class="form-control" value="{{ $post->body }}  " style="width:500px;" ></input>
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h2 class="mb-0">Edit Post</h2>
+        </div>
+        <div class="card-body">
+            <form method="POST" action="{{ route('posts.update', $post->id) }}">
+                @method('PUT')
+                @csrf
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title</label>
+                    <input type="text" name="title" class="form-control" value="{{ $post->title }}">
+                </div>
+                <div class="mb-3">
+                    <label for="body" class="form-label">Body</label>
+                    <textarea name="body" class="form-control" rows="5">{{ $post->body }}</textarea>
+                </div>
+
+                <div class="text-end">
+                    <a href="{{ route('posts.index') }}" class="btn btn-secondary me-2">Cancel</a>
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </div>
+            </form>
+        </div>
     </div>
-
-
-    <button type="submit" class="btn btn-primary">Edit</button>
-  </form>
 @endsection

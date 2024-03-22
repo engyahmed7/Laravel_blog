@@ -12,7 +12,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users=User::withCount('posts')->paginate(5);
+        $users=User::withCount('posts')->paginate(6);
         return view('users.index',['users'=>$users]);
     }
 
