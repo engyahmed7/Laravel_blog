@@ -15,7 +15,8 @@ class Post extends Model
             'body',
             'enable',
             'published_at',
-            'user_id'
+            'user_id',
+            'image'
         ];
 
         public function user(){

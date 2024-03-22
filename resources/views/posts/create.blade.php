@@ -17,7 +17,7 @@
 
 @endif --}}
 
-<form  action="{{route('posts.store')}}" method="post" class="d-block m-auto">
+<form  action="{{route('posts.store')}}" method="post" class="d-block m-auto" enctype="multipart/form-data">
 @csrf
 <div class="mb-3">
     <div class="mb-3">
@@ -50,6 +50,14 @@
           <label  class="form-label">date</label>
           <input type="date" class="form-control" name="published_at" value="{{old('published_at')}}" style="width:600px;" >
           @error("published_at")
+          <p class="text-danger">{{ $message }}</p>
+          @enderror
+        </div>
+
+        <div class="mb-3">
+          <label  class="form-label">Image</label>
+          <input @class(['form-control' ,'is-invalid'=>$errors->has('image')]) type="file" class="form-control" name="image" style="width:600px;" >
+          @error("image")
           <p class="text-danger">{{ $message }}</p>
           @enderror
         </div>

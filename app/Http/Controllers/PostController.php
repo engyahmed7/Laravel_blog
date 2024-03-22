@@ -42,6 +42,13 @@ class PostController extends Controller
 
         $input = $request->validated();
         $input['user_id'] = Auth::id();
+
+        $imagePath;
+        if($request->has('image') && $request->file('image')->isValid()){
+            $imagePath = $request->file('image')->store('posts', ['disk'=>'public']);
+        }
+        $input['image'] = $imagePath;
+
         // dd($input);
         Post::create($input);
         return redirect()->route('posts.index');

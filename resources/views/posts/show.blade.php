@@ -9,28 +9,21 @@
         </div>
     @endif
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-5">
             <div class="card">
                 <div class="card-header bg-primary text-light">
                     <h2 class="fw-bold mb-0">Post Details</h2>
                 </div>
                 <div class="card-body">
-                    <div class="mb-3">
-                        <p class="fw-bold">ID:</p>
-                        <p>{{ $post->id }}</p>
-                    </div>
-                    <div class="mb-3">
-                        <p class="fw-bold">Title:</p>
-                        <p>{{ $post->title }}</p>
-                    </div>
-                    <div class="mb-3">
-                        <p class="fw-bold">Body:</p>
-                        <p>{{ $post->body }}</p>
-                    </div>
-                    <div class="mb-3">
-                        <p class="fw-bold">Enabled:</p>
-                        <p>{{ $post->enable ? 'Yes' : 'No' }}</p>
-                    </div>
+                    @isset($post->image )
+                        <img src="{{ asset('storage/' . $post->image)}}" class="img-fluid" alt="Post Image">
+                    @endisset
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><strong>ID:</strong> {{ $post->id }}</li>
+                    <li class="list-group-item"><strong>Title:</strong> {{ $post->title }}</li>
+                    <li class="list-group-item"><strong>Body:</strong> {{ $post->body }}</li>
+                    <li class="list-group-item"><strong>Enable:</strong> {{ $post->enable ? 'Yes' : 'No' }}</li>
+                </ul>
                 </div>
                 <div class="card-footer">
                     <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
@@ -43,3 +36,6 @@
         </div>
     </div>
 @endsection
+
+
+{{-- asset('storage/' . $post->image) --}}
