@@ -19,6 +19,13 @@
                     <label for="body" class="form-label">Body</label>
                     <textarea name="body" class="form-control" rows="5">{{ $post->body }}</textarea>
                 </div>
+                <div class="mb-3">
+                    <label class="toggle-switch">
+                        <input type="hidden" name="enable" value="0">
+                        <input type="checkbox" name="enable" {{ $post->enable ? 'checked' : '' }} value="1">
+                        <label for="enabled">Enabled</label>
+                    </label>
+                </div>
 
                 <div class="text-end">
                     <a href="{{ route('posts.index') }}" class="btn btn-secondary me-2">Cancel</a>

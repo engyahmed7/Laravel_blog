@@ -27,6 +27,10 @@
                         <p class="fw-bold">Body:</p>
                         <p>{{ $post->body }}</p>
                     </div>
+                    <div class="mb-3">
+                        <p class="fw-bold">Enabled:</p>
+                        <p>{{ $post->enable ? 'Yes' : 'No' }}</p>
+                    </div>
                 </div>
                 <div class="card-footer">
                     <form action="{{ route('posts.destroy', $post->id) }}" method="POST">

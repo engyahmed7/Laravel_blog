@@ -74,7 +74,7 @@ class PostController extends Controller
     public function update(Request $request, string $id)
     {
 
-        Post::where('id', $id)->update($request->only(['title', 'body']));
+        Post::where('id', $id)->update($request->only(['title', 'body','enable']));
         return redirect()->route('posts.show', ['id' => $id])->with(['success'=>"Your Data Updated Successfully"]);
     }
 
