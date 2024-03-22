@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section("title","edit post")
-@section("navbar")
+{{-- @section("navbar") --}}
 
 @section("content")
 <form method="POST" action="{{ route('posts.update',$post->id) }}" >

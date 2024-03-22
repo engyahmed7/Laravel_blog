@@ -9,9 +9,9 @@
     <title>App Name - @yield('title')</title>
 </head>
 <body>
-    @section('navbar')
+    {{-- @section('navbar') --}}
         @include('includes.navbar')
-    @show
+    {{-- @show --}}
 
     <div class="container mt-4">
             @yield('content')

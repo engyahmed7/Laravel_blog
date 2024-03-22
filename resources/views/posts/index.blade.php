@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section("title","posts")
-@section("navbar")
+{{-- @section("navbar") --}}
 
 @section("content")
 
@@ -20,8 +20,8 @@
                 <th scope="col">Title</th>
                 <th scope="col">Body</th>
                 <th scope="col">Enable</th>
-                <th scope="col">Published At</th>
-                <th scope="col">User Name</th>
+                <th scope="col">Date</th>
+                <th scope="col">User</th>
                 <th scope="col">Actions</th>
             </tr>
             </thead>
@@ -35,13 +35,15 @@
                 <td scope="col">{{ $post->published_at }}</td>
                 <td scope="col">{{ $post->user->name }}</td>
                 <td scope="col">
-                    <a href="{{ route('posts.show', $post->id) }}" class="btn btn-primary mb-3">Show</a>
-                    <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-secondary mb-3">Edit</a>
-                    <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                    </form>
+                    <div class="d-flex">
+                        <a href="{{ route('posts.show', $post->id) }}" class="btn btn-primary mb-3">Show</a>
+                        <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-secondary mb-3 ms-2">Edit</a>
+                        <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger ms-2">Delete</button>
+                        </form>
+                    </div>
                 </td>
             </tr>
             @endforeach

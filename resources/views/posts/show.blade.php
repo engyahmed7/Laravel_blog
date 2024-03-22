@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section("title","Show Post")
-@section("navbar")
+{{-- @section("navbar") --}}
 
 @section("content")
 @if(session('success'))

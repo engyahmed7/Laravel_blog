@@ -24,7 +24,7 @@ class storePostRequest extends FormRequest
         return [
             "title" => ['required', 'string',"min:5"],
             "body" => ['required', 'string'],
-            "enable" => ['required'],
+            "enable" => [''],
             "published_at" => ['required', 'date']
 
         ];
